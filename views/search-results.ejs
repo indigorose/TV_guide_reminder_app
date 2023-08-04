@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Movie Search Results</title>
+	</head>
+	<body>
+		<h1>Movie Search Results for "<%= query %>":</h1>
+		<% if (results && results.length > 0) { %>
+		<ul>
+			<% results.forEach(movie => { %>
+			<li>
+				<h2><%= movie.title %></h2>
+				<p><strong>Release Date:</strong> <%= movie.release_date %></p>
+				<p><strong>Overview:</strong> <%= movie.overview %></p>
+			</li>
+			<% }); %>
+		</ul>
+		<% } else { %>
+		<p>No results found.</p>
+		<% } %>
+	</body>
+</html>
