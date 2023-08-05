@@ -3,7 +3,17 @@
 	<head>
 		<title>Movie Search Results</title>
 	</head>
+
 	<body>
+		<form action="/search" method="get">
+			<input
+				type="text"
+				name="q"
+				id="query"
+				placeholder="Search for any movie or tv show"
+			/>
+			<button type="submit">Search</button>
+		</form>
 		<h1>Movie Search Results for "<%= query %>":</h1>
 		<% if (results && results.length > 0) { %>
 		<ul>

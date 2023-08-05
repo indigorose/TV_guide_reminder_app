@@ -27,16 +27,20 @@ const options = {
 	},
 };
 
+app.get('/', (req, res) => {
+	res.render('index');
+});
+
 app.get('/search', async (req, res) => {
 	try {
-		const query = 'Thor'; // Get the search query from the URL parameter
+		const query = req.query.q; // Get the search query from the URL parameter
 
 		const response = await fetch(
 			`https://api.themoviedb.org/3/search/multi?query=${query}`,
 			options
 		);
 		const data = await response.json();
-		console.log(data);
+		// console.log(data);
 
 		res.render('search-results', { query, results: data.results });
 	} catch (error) {

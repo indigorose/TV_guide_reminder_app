@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Movie Search</title>
+	</head>
+
+	<body>
+		<nav>
+			<ul>
+				<li>Home</li>
+				<li>My Media Watch List</li>
+				<li>Log in</li>
+			</ul>
+		</nav>
+		<div class="container">
+			<div class="headliner">
+				<h1>Welcome to your media watch list</h1>
+				<p>
+					Search for any TV Show or Movie and store them in your own
+					personal watch list.
+				</p>
+			</div>
+			<form action="/search" method="get">
+				<input
+					type="text"
+					name="q"
+					id="query"
+					placeholder="Search for any movie or tv show"
+				/>
+				<button type="submit">Search</button>
+			</form>
+		</div>
+	</body>
+</html>
