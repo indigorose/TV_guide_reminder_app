@@ -1,4 +1,6 @@
 // console.log('May the server be with you');
+// To start the server - npm run dev
+// web page is http://127.0.0.1:5500/
 
 // Importing packages
 

@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="style.css" />
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="localhost:5500">MS</a>
+			<a class="navbar-brand" href="http://127.0.0.1:5500">MS</a>
 			<button
 				class="navbar-toggler"
 				type="button"
@@ -52,7 +52,8 @@
 				</form>
 			</div>
 		</nav>
-
+<!-- TODO: add each entry selected to database -->
+<!-- TODO If entry is empty do not show -->
 		<div class="container">
 			<h1>Movie Search Results for "<%= query %>":</h1>
 			<div class="container">
@@ -66,6 +67,7 @@
 							movie.release_date %>
 						</p>
 						<p><strong>Overview:</strong> <%= movie.overview %></p>
+						<button type="submit" class="btn btn-outline-success my-2 my-lg-0">Add to List</button>
 					</li>
 					<% }); %>
 				</ul>
