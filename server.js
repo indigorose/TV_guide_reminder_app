@@ -49,5 +49,5 @@ app.get('/search', async (req, res) => {
 });
 
 // port
-const port = process.env.PORT || 5500;
+const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on Port: ${port}`));
