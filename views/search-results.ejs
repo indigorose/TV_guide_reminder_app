@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="style.css" />
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="http://127.0.0.1:5500">MS</a>
+			<a class="navbar-brand" href="http://127.0.0.1:3000">MS</a>
 			<button
 				class="navbar-toggler"
 				type="button"
@@ -34,31 +34,36 @@
 					</li>
 				</ul>
 
-				<form action="/search" method="get" class="form-inline my-2 my-lg-0">
-
-								<input
-									class="form-control mr-sm-2"
-									type="text"
-									name="q"
-									id="query"
-									placeholder="Search for any Movie"
-								/>
-							</div>
-						</div>
-						<button type="submit" class="btn btn-outline-success my-2 my-lg-0">
-							Search
-						</button>
-					</div>
+				<form
+					action="/search"
+					method="get"
+					class="form-inline my-2 my-lg-0"
+				>
+					<input
+						class="form-control mr-sm-2"
+						type="text"
+						name="q"
+						id="query"
+						placeholder="Search for any Movie"
+					/>
+					<button
+						type="submit"
+						class="btn btn-outline-success my-2 my-lg-0"
+					>
+						Search
+					</button>
 				</form>
 			</div>
 		</nav>
-<!-- TODO add each entry selected to database If entry is empty do not show  -->
+		<!-- TODO add each entry selected to database If entry is empty do not show  -->
 		<div class="container">
 			<h1>Movie Search Results for "<%= query %>":</h1>
 			<div class="container_1">
 				<% if (results && results.length > 0) { %>
 				<ul class="list-group">
-					<% results.forEach(movie => { %>
+					<% results.forEach(movie => { %> <% if (movie.title &&
+					movie.title.trim() !== '') { %>
+
 					<li class="list-group-item">
 						<h2><%= movie.title %></h2>
 						<p>
@@ -66,9 +71,33 @@
 							movie.release_date %>
 						</p>
 						<p><strong>Overview:</strong> <%= movie.overview %></p>
-						<button type="submit" class="btn btn-outline-success my-2 my-lg-0">Add to List</button>
+						\
+						<form action="/addToList" method="post">
+							<input
+								type="hidden"
+								name="title"
+								value="<%= movie.title %>"
+							/>
+							<input
+								type="hidden"
+								name="release_date"
+								value="<%= movie.release_date %>"
+							/>
+							<input
+								type="hidden"
+								name="overview"
+								value="<%= movie.overview %>"
+							/>
+							<button
+								id="add-list"
+								type="submit"
+								class="btn btn-outline-success my-2 my-lg-0"
+							>
+								Add to List
+							</button>
+						</form>
 					</li>
-					<% }); %>
+					<% } %> <% }); %>
 				</ul>
 				<% } else { %>
 				<p>No results found.</p>
