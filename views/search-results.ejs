@@ -58,7 +58,7 @@
 		<!-- TODO add each entry selected to database If entry is empty do not show  -->
 		<div class="container">
 			<h1>Movie Search Results for "<%= query %>":</h1>
-			<div class="container_1">
+			<div class="container_1 p-5 m-1">
 				<% if (results && results.length > 0) { %>
 				<ul class="list-group">
 					<% results.forEach(movie => { %> <% if (movie.title &&
@@ -71,7 +71,6 @@
 							movie.release_date %>
 						</p>
 						<p><strong>Overview:</strong> <%= movie.overview %></p>
-						\
 						<form action="/addToList" method="post">
 							<input
 								type="hidden"
