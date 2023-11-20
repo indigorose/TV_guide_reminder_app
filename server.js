@@ -25,8 +25,8 @@ const connectionString = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_
 MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
 	(client) => {
 		console.log('Connected to the Database');
-		const db = client.db('media-api-list');
-		const mediaCollection = db.collection('media-titles');
+		const db = client.db('mediaApiList');
+		const mediaCollection = db.collection('mediaTitles');
 
 		app.post('/addToList', async (req, res) => {
 			try {
@@ -37,7 +37,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
 						releaseDate: release_date,
 						overview,
 					});
-					res.status(201).send('Movie added to the list!');
+					console.log('Movie title has been added');
 				} else {
 					res.status(400).send('Movie title cannot be empty.');
 				}
@@ -45,6 +45,12 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
 				console.error(err);
 				res.status(500).send('Error adding movie to list');
 			}
+			db.collection('mediaTitles')
+				.find()
+				.toArray()
+				.then((results) => {
+					res.render('list.ejs', { mediaTitles: results });
+				});
 		});
 	}
 );

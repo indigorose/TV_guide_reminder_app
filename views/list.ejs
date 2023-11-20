@@ -27,7 +27,17 @@
             </div>
         </nav>
 		<div class="container">
-
+            <h1>My Movie List</h1>
+            <div>
+                <% for(var = 0; i < mediaTitles.length; i++) {%>
+                <li>
+                    <span>
+                        <%= mediaTitles[i].name %>
+                    </span>
+                </li>
+                
+                <%} %>
+            </div>
 		</div>
 
 	</body>
