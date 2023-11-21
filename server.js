@@ -37,6 +37,12 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
 						releaseDate: release_date,
 						overview,
 					});
+					db.collection('mediaTitles')
+						.find()
+						.toArray()
+						.then((results) => {
+							res.render('list.ejs', { mediaTitles: results });
+						});
 					console.log('Movie title has been added');
 				} else {
 					res.status(400).send('Movie title cannot be empty.');
@@ -45,12 +51,6 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
 				console.error(err);
 				res.status(500).send('Error adding movie to list');
 			}
-			db.collection('mediaTitles')
-				.find()
-				.toArray()
-				.then((results) => {
-					res.render('list.ejs', { mediaTitles: results });
-				});
 		});
 	}
 );
