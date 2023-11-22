@@ -21,6 +21,8 @@ const API_TOKEN = process.env.MOVIEDB_API_TOKEN;
 const connectionString = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster-crud.inopdty.mongodb.net/?retryWrites=true&w=majority`;
 // Connecting to MongoDB
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
+// DOM and Styling
+app.set('view engine', 'ejs');
 
 MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
 	(client) => {
@@ -28,7 +30,11 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
 		const db = client.db('mediaApiList');
 		const mediaCollection = db.collection('mediaTitles');
 
-		app.post('/addToList', async (req, res) => {
+		app.get('/', (req, res) => {
+			res.render('index');
+		});
+
+		app.post('/', async (req, res) => {
 			try {
 				const { title, release_date, overview } = req.body;
 				if (title && title.trim() !== '') {
@@ -57,18 +63,15 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// DOM and Styling
-app.set('view engine', 'ejs');
-
 // ROUTING - For Later
 // const hello = require('./routes/hello');
 
-MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
-	(client) => {
-		console.log('Connected to the database.');
-		const db = client.db('media-api-list');
-	}
-);
+// MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
+// 	(client) => {
+// 		console.log('Connected to the database.');
+// 		const db = client.db('media-api-list');
+// 	}
+// );
 
 // Fetching API data
 
@@ -79,10 +82,6 @@ const options = {
 		Authorization: `Bearer ${API_TOKEN}`,
 	},
 };
-
-app.get('/', (req, res) => {
-	res.render('index');
-});
 
 app.get('/search', async (req, res) => {
 	try {
