@@ -59,14 +59,14 @@
             <h1>My Movie List</h1>
             <ul class="list-group movie-titles">
             <!-- Loop through saved movie titles -->
-            <% for(var i = 0; i < mediaTitles.length; i++) {%>
+            <% for(var i = 0; i < list.length; i++) {%>
             <li class="list-group-item">
                 <!-- Output name from the iterated quote object -->
-                <h1><%= mediaTitles[i].title%></h1>
+                <h1><%= list[i].title%></h1>
                 <p>
-					<strong>Release Date:</strong> <%=mediaTitles[i].releaseDate %></p>
+					<strong>Release Date:</strong> <%=list[i].releaseDate %></p>
                 <!-- Output quote from the iterated quote object -->
-                <p><strong>Overview</strong> <%= mediaTitles[i].overview %></p>
+                <p><strong>Overview</strong> <%= list[i].overview %></p>
                 <div class="btn-group" role="group" aria-label="Basic example"><button id="update-watch" type="submit" class="btn btn-warning">Update</button></div>
                 <div class="btn-group" role="group" aria-label="Basic example"><button id="update-watch" type="submit" class="btn btn-danger">Delete</button></div>
 

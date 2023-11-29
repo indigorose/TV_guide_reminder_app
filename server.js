@@ -23,15 +23,46 @@ const connectionString = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 // DOM and Styling
 app.set('view engine', 'ejs');
+app.use(express.static('public'));
+app.use(bodyParser.json());
 
 MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
 	(client) => {
 		console.log('Connected to the Database');
 		const db = client.db('mediaApiList');
 		const mediaCollection = db.collection('mediaTitles');
+		const options = {
+			method: 'GET',
+			headers: {
+				accept: 'application/json',
+				Authorization: `Bearer ${API_TOKEN}`,
+			},
+		};
+
+		app.use(bodyParser.urlencoded({ extended: true }));
 
 		app.get('/', (req, res) => {
-			res.render('index');
+			const list = db
+				.collection('mediaTitles')
+				.find()
+				.toArray()
+				.then((results) => {
+					res.render('index.ejs', { list: results });
+				});
+		});
+		app.get('/search', async (req, res) => {
+			try {
+				const query = req.query.q; // Get the search query from the URL parameter
+				const url = `https://api.themoviedb.org/3/search/multi?query=${query}`;
+				const response = await fetch(url, options);
+				const data = await response.json();
+				console.log(data);
+
+				res.render('search-results', { query, results: data.results });
+			} catch (error) {
+				console.error('Error fetching data:', error);
+				res.status(500).json({ error: 'Error fetching data' });
+			}
 		});
 
 		app.post('/', async (req, res) => {
@@ -58,10 +89,10 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
 				res.status(500).send('Error adding movie to list');
 			}
 		});
+		const port = process.env.PORT || 3000;
+		app.listen(port, () => console.log(`Listening on Port: ${port}`));
 	}
 );
-
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // ROUTING - For Later
 // const hello = require('./routes/hello');
@@ -75,29 +106,4 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Fetching API data
 
-const options = {
-	method: 'GET',
-	headers: {
-		accept: 'application/json',
-		Authorization: `Bearer ${API_TOKEN}`,
-	},
-};
-
-app.get('/search', async (req, res) => {
-	try {
-		const query = req.query.q; // Get the search query from the URL parameter
-		const url = `https://api.themoviedb.org/3/search/multi?query=${query}`;
-		const response = await fetch(url, options);
-		const data = await response.json();
-		console.log(data);
-
-		res.render('search-results', { query, results: data.results });
-	} catch (error) {
-		console.error('Error fetching data:', error);
-		res.status(500).json({ error: 'Error fetching data' });
-	}
-});
-
 // port
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Listening on Port: ${port}`));
