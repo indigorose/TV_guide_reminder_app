@@ -90,6 +90,14 @@ MongoClient.connect(connectionString).then((client) => {
 			res.status(500).send('Error adding movie to list');
 		}
 	});
+	app.delete('/mediaTitles', (req, res) => {
+		mediaCollection
+			.deleteOne({ name: req.body.name })
+			.then((result) => {
+				res.json(`Movie has been deleted.`);
+			})
+			.catch((error) => console.error(error));
+	});
 	const port = process.env.PORT || 3000;
 	app.listen(port, () => console.log(`Listening on Port: ${port}`));
 });
