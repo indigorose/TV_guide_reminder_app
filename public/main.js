@@ -1,18 +1,19 @@
 const update = document.querySelector('#update-watch');
-const deleteButton = document.querySelector('#delete-media');
+const deleteButton = document.querySelectorAll('.delete-btn');
 
-deleteButton.addEventListener('click', (_) => {
-	fetch('/mediaTitles', {
-		method: 'delete',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify({
-			name: { title },
-		}),
-	})
-		.then((res) => {
-			if (res.ok) return res.json();
+deleteButton.forEach((button) => {
+	button.addEventListener('click', (event) => {
+		const movieId = event.target.getAttribute('data-id');
+		fetch(`/mediaTitles/${movieId}`, {
+			method: 'DELETE',
 		})
-		.then((data) => {
-			window.location.reload();
-		});
+			.then((res) => {
+				if (res.ok) return res.json();
+				throw new Error('Movie deletion failed');
+			})
+			.then((data) => {
+				window.location.reload();
+			})
+			.catch((error) => console.error(error));
+	});
 });

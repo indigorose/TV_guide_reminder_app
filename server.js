@@ -15,6 +15,7 @@ const fetch = (...args) =>
 // const MongoClient = require('mongodb').MongoClient;
 // require('dotenv').config();
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const { ObjectId } = require('mongodb');
 
 // API Tokens
 const API_TOKEN = process.env.MOVIEDB_API_TOKEN;
@@ -90,11 +91,18 @@ MongoClient.connect(connectionString).then((client) => {
 			res.status(500).send('Error adding movie to list');
 		}
 	});
-	app.delete('/mediaTitles', (req, res) => {
+	app.delete('/mediaTitles/:id', (req, res) => {
+		const movieId = req.params.id;
 		mediaCollection
-			.deleteOne({ name: req.body.name })
+			.deleteOne({ _id: new ObjectId(`${movieId}`) })
 			.then((result) => {
-				res.json(`Movie has been deleted.`);
+				if (result.deletedCount === 1) {
+					res.status(200).json({
+						message: 'Movie has been deleted.',
+					});
+				} else {
+					res.status(400).json({ message: 'Movie not found.' });
+				}
 			})
 			.catch((error) => console.error(error));
 	});

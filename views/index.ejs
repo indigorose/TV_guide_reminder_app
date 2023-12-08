@@ -67,8 +67,11 @@
 					<strong>Release Date:</strong> <%=list[i].releaseDate %></p>
                 <!-- Output quote from the iterated quote object -->
                 <p><strong>Overview</strong> <%= list[i].overview %></p>
+				
                 <div class="btn-group" role="group" aria-label="Basic example"><button id="update-watch" type="submit" class="btn btn-warning">Update</button></div>
-                <div class="btn-group" role="group" aria-label="Basic example"><button id="update-watch" type="submit" class="btn btn-danger">Delete</button></div>
+                <div class="btn-group" role="group" aria-label="Basic example">
+					<button id="update-watch" type="submit" class="btn btn-danger delete-btn" data-id="<%= list[i]._id %>">Delete</button>
+				</div>
 
             </li>
             <% } %>
@@ -80,6 +83,6 @@
 				
 			</div>
 		</footer>
-		<script src="/public/main.js"></script>
+		<script src="/main.js"></script>
 	</body>
 </html>
