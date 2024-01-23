@@ -14,7 +14,7 @@
 
 	<body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">MS</a>
+            <a class="navbar-brand" href="#">LOGO</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -55,17 +55,21 @@
 					</button>
 				</div>
 			</form>
-			<div class="container grid gap-3 mx-auto p-3">
+			<div class="container p-3 g-2">
+				<button type="button" class="btn btn-primary">See My List</button>
+			</div>
+			
+			<!--<div class="container grid gap-3 mx-auto p-3">
             <h1>My Movie List</h1>
             <ul class="list-group movie-titles">
-            <!-- Loop through saved movie titles -->
+            Loop through saved movie titles 
             <% for(var i = 0; i < list.length; i++) {%>
             <li class="list-group-item">
-                <!-- Output name from the iterated quote object -->
+                Output name from the iterated quote object 
                 <h1><%= list[i].title%></h1>
                 <p>
 					<strong>Release Date:</strong> <%=list[i].releaseDate %></p>
-                <!-- Output quote from the iterated quote object -->
+                Output quote from the iterated quote object 
                 <p><strong>Overview</strong> <%= list[i].overview %></p>
 				
                 <div class="btn-group" role="group" aria-label="Basic example"><button id="update-watch" type="submit" class="btn btn-warning">Update</button></div>
@@ -76,7 +80,7 @@
             </li>
             <% } %>
             </ul>
-		</div>
+		</div> -->
 		</div>
 		<footer>
 			<div>
