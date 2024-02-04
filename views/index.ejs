@@ -55,28 +55,40 @@
 					personal watch list.
 				</p>
 			</div>
-			<form action="/search" method="get" class="form-inline">
-				<div class="row">
-					<div class="col">
-						<div class="col">
+			<div class="card">
+				<div class="card-body">
+					<form action="/search" method="get" class="form-inline">
+						<!-- <div class="row">
+							<div class="col px-md-5">
+								<div class="col">
+									<input
+										class="form-control"
+										type="text"
+										name="q"
+										id="query"
+										placeholder="Search for any Movie"
+									/>
+								</div>
+							</div>
+						</div> -->
+						<div class="input-group mb-3">
 							<input
-								class="form-control"
 								type="text"
+								class="form-control"
 								name="q"
 								id="query"
-								placeholder="Search for any Movie"
+								placeholder="Search any Movie or TV Show"
+								aria-label="Search any Movie or TV Show"
+								aria-describedby="basic-addon2"
 							/>
+							<div class="input-group-append">
+								<button class="btn btn-outline-success">
+									Submit
+								</button>
+							</div>
 						</div>
-					</div>
-					<button type="submit" class="btn btn-primary">
-						Search
-					</button>
+					</form>
 				</div>
-			</form>
-			<div class="container p-3 g-2">
-				<button type="button" class="btn btn-primary">
-					See My List
-				</button>
 			</div>
 
 			<!--<div class="container grid gap-3 mx-auto p-3">
