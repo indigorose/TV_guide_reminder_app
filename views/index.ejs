@@ -47,7 +47,7 @@
 				</div>
 			</div>
 		</nav>
-		<div class="container mx-auto p-2">
+		<div class="container mx-auto p-10">
 			<div class="headliner px-md-5">
 				<h1>Welcome to Never Miss Media</h1>
 				<p>
@@ -55,10 +55,70 @@
 					personal watch list.
 				</p>
 			</div>
-			<div class="card">
+			<div class="container w-50 p-3">
+				<form>
+					<div class="row p-3">
+						<div class="col">
+							<input
+								type="text"
+								class="form-control"
+								placeholder="First name"
+								aria-label="First name"
+							/>
+						</div>
+						<div class="col">
+							<input
+								type="text"
+								class="form-control"
+								placeholder="Last name"
+								aria-label="Last name"
+							/>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="exampleInputEmail1" class="form-label"
+							>Email address</label
+						>
+						<input
+							type="email"
+							class="form-control"
+							id="exampleInputEmail1"
+							aria-describedby="emailHelp"
+						/>
+						<div id="emailHelp" class="form-text">
+							We'll never share your email with anyone else.
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="exampleInputPassword1" class="form-label"
+							>Password</label
+						>
+						<input
+							type="password"
+							class="form-control"
+							id="exampleInputPassword1"
+						/>
+					</div>
+					<div class="mb-3 form-check">
+						<input
+							type="checkbox"
+							class="form-check-input"
+							id="exampleCheck1"
+						/>
+						<label class="form-check-label" for="exampleCheck1"
+							>Check me out</label
+						>
+					</div>
+					<button type="submit" class="btn btn-primary">
+						Submit
+					</button>
+				</form>
+			</div>
+
+			<!-- <div class="card">
 				<div class="card-body">
 					<form action="/search" method="get" class="form-inline">
-						<!-- <div class="row">
+						<div class="row">
 							<div class="col px-md-5">
 								<div class="col">
 									<input
@@ -70,7 +130,7 @@
 									/>
 								</div>
 							</div>
-						</div> -->
+						</div> 
 						<div class="input-group mb-3">
 							<input
 								type="text"
@@ -81,7 +141,7 @@
 								aria-label="Search any Movie or TV Show"
 								aria-describedby="basic-addon2"
 							/>
-							<div class="input-group-append">
+							<div class="input-group-append ps-3">
 								<button class="btn btn-outline-success">
 									Submit
 								</button>
@@ -89,7 +149,7 @@
 						</div>
 					</form>
 				</div>
-			</div>
+			</div> -->
 
 			<!--<div class="container grid gap-3 mx-auto p-3">
             <h1>My Movie List</h1>
