@@ -7,13 +7,17 @@
 // Importing packages
 
 const express = require('express');
+var expressLayouts = require('express-ejs-layouts');
 const app = express();
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv').config();
+const passport = require('passport');
+const session = require('express-session');
+const UserDetails = require('./userDetails');
+const routes = require('./routes/router');
 const fetch = (...args) =>
 	import('node-fetch').then(({ default: fetch }) => fetch(...args));
-// const MongoClient = require('mongodb').MongoClient;
-// require('dotenv').config();
+
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const { ObjectId } = require('mongodb');
 
@@ -27,7 +31,28 @@ const connectionString = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_
 // DOM and Styling
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use(expressLayouts);
+app.set('layout', './layout/main');
 app.use(bodyParser.json());
+
+// Set up session
+app.use(
+	session({
+		secret: process.env.SECRET,
+		resave: false,
+		saveUninitialized: true,
+	})
+);
+
+// Set up passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(UserDetails.createStrategy());
+passport.serializeUser(UserDetails.serializeUser());
+passport.deserializeUser(UserDetails.deserializeUser());
+
+app.use(routes);
 
 MongoClient.connect(connectionString).then((client) => {
 	console.log('Connected to the Database');
@@ -106,20 +131,6 @@ MongoClient.connect(connectionString).then((client) => {
 			})
 			.catch((error) => console.error(error));
 	});
-	const port = process.env.PORT || 3000;
-	app.listen(port, () => console.log(`Listening on Port: ${port}`));
 });
-
-// ROUTING - For Later
-// const hello = require('./routes/hello');
-
-// MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(
-// 	(client) => {
-// 		console.log('Connected to the database.');
-// 		const db = client.db('media-api-list');
-// 	}
-// );
-
-// Fetching API data
-
-// port
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Listening on Port: ${port}`));
