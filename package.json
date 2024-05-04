@@ -2,34 +2,35 @@
 	"name": "tv_guide_reminder_app",
 	"version": "1.0.0",
 	"description": "",
-	"main": "./routes/index.js",
+	"type": "module",
+	"main": "index.js",
 	"scripts": {
-		"server": "nodemon app.js",
-		"dev": "nodemon app.js",
+		"start": "node backend/app.js",
+		"server": "nodemon backend/app.js",
+		"dev": "nodemon backend/app.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"connect-ensure-login": "^0.1.1",
-		"connect-sqlite": "^0.0.1",
-		"connect-sqlite3": "^0.9.15",
+		"bcryptjs": "^2.4.3",
 		"cookie-parser": "^1.4.6",
 		"dotenv": "^16.3.1",
 		"ejs": "^3.1.9",
 		"express": "^4.18.2",
+		"express-async-handler": "^1.2.0",
 		"express-ejs-layouts": "^2.5.1",
 		"express-session": "^1.18.0",
+		"jsonwebtoken": "^9.0.2",
 		"mongodb": "^6.3.0",
 		"mongoose": "^8.1.1",
 		"morgan": "^1.10.0",
 		"node-fetch": "^3.3.1",
 		"passport": "^0.7.0",
 		"passport-local-mongoose": "^8.0.0",
-		"pluralize": "^8.0.0",
-		"sqlite3": "^5.1.7"
+		"pluralize": "^8.0.0"
 	},
 	"devDependencies": {
-		"nodemon": "^3.0.1"
+		"nodemon": "^3.1.0"
 	}
 }
