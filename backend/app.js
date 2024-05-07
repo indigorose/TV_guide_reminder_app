@@ -18,7 +18,7 @@ import userRoutes from './routes/userRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import cookieParser from 'cookie-parser';
 import connectDB from './config/db.js';
-dotenv.config({ path: './config.env' });
+dotenv.config({ path: './config1.env' });
 connectDB();
 
 const PORT = process.env.PORT || 5000;

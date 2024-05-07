@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
 import User from '../models/userModel.js';
 import dotenv from 'dotenv';
-dotenv.config({ path: './config.env' });
+dotenv.config({ path: './config1.env' });
 
 const protect = asyncHandler(async (req, res, next) => {
 	let token;
