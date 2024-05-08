@@ -1,10 +1,15 @@
+import Header from "./components/header"
+import HomeScreen from "./screens/HomeScreen"
+
 const App = () => {
   return (
     <>
-    <h1>My Media Watchlist</h1>
+    <Header />
+    <HomeScreen />
     </>
     
   )
 }
 
 export default App
+ 
