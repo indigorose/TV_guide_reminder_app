@@ -1,50 +1,50 @@
-const express = require('express');
-var expressLayouts = require('express-ejs-layouts');
-const app = express();
-const bodyParser = require('body-parser');
-const dotenv = require('dotenv').config();
-const passport = require('passport');
-const session = require('express-session');
-const UserDetails = require('./userDetails');
-const routes = require('../routes/router');
-const fetch = (...args) =>
-	import('node-fetch').then(({ default: fetch }) => fetch(...args));
+// const express = require('express');
+// var expressLayouts = require('express-ejs-layouts');
+// const app = express();
+// const bodyParser = require('body-parser');
+// const dotenv = require('dotenv').config();
+// const passport = require('passport');
+// const session = require('express-session');
+// const UserDetails = require('./userDetails');
+// const routes = require('../routes/router');
+// const fetch = (...args) =>
+// 	import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const { ObjectId } = require('mongodb');
+// const { MongoClient, ServerApiVersion } = require('mongodb');
+// const { ObjectId } = require('mongodb');
 
 // API Tokens
-const API_TOKEN = process.env.MOVIEDB_API_TOKEN;
+// const API_TOKEN = process.env.MOVIEDB_API_TOKEN;
 
 // MongoDB Connection
-const connectionString = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster-crud.inopdty.mongodb.net/?retryWrites=true&w=majority`;
+// const connectionString = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster-crud.inopdty.mongodb.net/?retryWrites=true&w=majority`;
 // Connecting to MongoDB
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 // DOM and Styling
-app.set('view engine', 'ejs');
-app.use(express.static('public'));
-app.use(expressLayouts);
-app.set('layout', './layout/main');
-app.use(bodyParser.json());
+// app.set('view engine', 'ejs');
+// app.use(express.static('public'));
+// app.use(expressLayouts);
+// app.set('layout', './layout/main');
+// app.use(bodyParser.json());
 
 // Set up session
-app.use(
-	session({
-		secret: process.env.SECRET,
-		resave: false,
-		saveUninitialized: true,
-	})
-);
+// app.use(
+// 	session({
+// 		secret: process.env.SECRET,
+// 		resave: false,
+// 		saveUninitialized: true,
+// 	})
+// );
 
 // Set up passport
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
-passport.use(UserDetails.createStrategy());
-passport.serializeUser(UserDetails.serializeUser());
-passport.deserializeUser(UserDetails.deserializeUser());
+// passport.use(UserDetails.createStrategy());
+// passport.serializeUser(UserDetails.serializeUser());
+// passport.deserializeUser(UserDetails.deserializeUser());
 
-app.use(routes);
+// app.use(routes);
 
 // MongoClient.connect(connectionString).then((client) => {
 // 	console.log('Connected to the Database');
