@@ -30,6 +30,18 @@ app.use(cookieParser());
 app.use('/api/users', userRoutes);
 
 app.get('/', (req, res) => res.send('Server is ready.'));
+app.get('/search', async (req, res) => {
+	try {
+		const query = req.query.query;
+		const apiKey = process.env.MOVIEDB_API_KEY;
+		const response = await axios.get(
+			`https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${apiKey}`
+		);
+		res.json(response.data);
+	} catch (error) {
+		res.status(500).json({ message: 'Error fetching movies' });
+	}
+});
 
 app.use(notFound);
 app.use(errorHandler);

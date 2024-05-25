@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { Form, Button, Row, Col, Container, Card, Message, Link} from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import { Form, Button, Row, Col, Container, Card} from 'react-bootstrap';
 import { fetchMovies } from '../slices/moviesSlice'; // You need to create this slice
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
@@ -12,7 +12,7 @@ const Hero = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { movies, loading, error } = useSelector((state) => state.movies); // Assuming you have moviesSlice in the state
+    const { movies, loading, } = useSelector((state) => state.movies); // Assuming you have moviesSlice in the state
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -29,15 +29,14 @@ const Hero = () => {
             <Container className='d-flex justify-content-center'>
                 <Card className='p-5 d-flex flex-column align-items-center hero-card bg-light w-75'>
                     <h1 className='text-center mb-4'>My Media Watchlist</h1>
-                    <p className='text-center mb-4'>
+                    <p className='text-center mb-3'>
                         Welcome to your own Media Watchlist, a place to store your &quot;I&apos;ll get round to it&quot; Movies and TV Shows. 
                         <br />Start now by searching below or log in to see your list. 
                     </p>
-                    <div className="d-flex">
+
                     <FormContainer>
                     <h1>Search Movies</h1>
                     {loading && <Loader />}
-                    {error && <Message variant="danger">{error}</Message>}
                     <Form onSubmit={submitHandler}>
                         <Form.Group controlId="query">
                         <Form.Label>Search Query</Form.Label>
@@ -68,9 +67,8 @@ const Hero = () => {
                         ))}
                         </Row>
                     )}
-                    </FormContainer>
-                    </div>
-                    <div className='d-flex'>
+                    </FormContainer> 
+                    <div className='d-flex mt-3'>
                         <LinkContainer to='/login'>
                             <Button variant='primary' className='me-3'>
                                 Sign In
