@@ -38,6 +38,7 @@ app.get('/search', async (req, res) => {
 			`https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${apiKey}`
 		);
 		res.json(response.data);
+		// TODO: console log the data from the api. 
 	} catch (error) {
 		res.status(500).json({ message: 'Error fetching movies' });
 	}
