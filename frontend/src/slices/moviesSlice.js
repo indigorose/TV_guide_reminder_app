@@ -4,7 +4,10 @@ import axios from 'axios';
 export const fetchMovies = createAsyncThunk(
 	'movies/fetchMovies',
 	async (query) => {
-		const response = await axios.get(`/api/movies?query=${query}`);
+		const apiKey = process.env.MOVIEDB_API_KEY;
+		const response = await axios.get(
+			`https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${apiKey}`
+		);
 		return response.data.results;
 	}
 );

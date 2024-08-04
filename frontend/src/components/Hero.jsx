@@ -18,7 +18,7 @@ const Hero = () => {
         e.preventDefault();
         if (query.trim()) {
         dispatch(fetchMovies(query));
-        navigate(`/search?query=${query}`);
+        navigate(`/search`);
         } else {
         toast.error('Please enter a search query');
         }
@@ -51,22 +51,6 @@ const Hero = () => {
                         Search
                         </Button>
                     </Form>
-                    {movies && movies.length > 0 && (
-                        <Row className="mt-3">
-                        {movies.map((movie) => (
-                            <Col key={movie.id} sm={12} md={6} lg={4} xl={3}>
-                            <Link to={`/movie/${movie.id}`}>
-                                <Card>
-                                <Card.Img src={movie.poster_path} variant="top" />
-                                <Card.Body>
-                                    <Card.Title>{movie.title}</Card.Title>
-                                </Card.Body>
-                                </Card>
-                            </Link>
-                            </Col>
-                        ))}
-                        </Row>
-                    )}
                     </FormContainer> 
                     <div className='d-flex mt-3'>
                         <LinkContainer to='/login'>
