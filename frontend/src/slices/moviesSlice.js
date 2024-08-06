@@ -2,8 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // TODO how to add API key
-// const API_KEY = process.env.MOVIEDB_API_KEY;
-// console.log(API_KEY);
+const API_KEY = import.meta.env.VITE_REACT_APP_MOVIEDB_API_KEY;
 
 export const fetchMovies = createAsyncThunk(
 	'movies/fetchMovies',
@@ -11,7 +10,7 @@ export const fetchMovies = createAsyncThunk(
 		console.log(query);
 		try {
 			const response = await axios.get(
-				`https://api.themoviedb.org/3/search/movie?api_key=&query=${query}`
+				`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`
 			);
 			console.log('API Response:', response.data.results); // Log the API response
 			return response.data.results;
