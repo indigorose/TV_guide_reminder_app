@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// TODO how to add API key
+// Always start the front end separately to get the keys to work. The keys are in the frontend env file. As it is written in vite, the wording is different. Test with another project.
 const API_KEY = import.meta.env.VITE_REACT_APP_MOVIEDB_API_KEY;
 
 export const fetchMovies = createAsyncThunk(
