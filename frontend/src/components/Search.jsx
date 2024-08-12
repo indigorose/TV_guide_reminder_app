@@ -28,10 +28,11 @@ const Search = () => {
 	return (
 		<div className="search-results">
 			{results.length > 0 ? (
-				results.map((movie) => (
-					<div key={movie.id} className="movie">
+				results.slice(0, 10).map((movie) => (
+					<div key={movie.id} className="movie ">
 						<h2>{movie.title}</h2>
-						<p>{movie.overview}</p>
+						<p>Release Date: {movie.release_date}</p>
+
 						<img
 							src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
 							alt={movie.title}
